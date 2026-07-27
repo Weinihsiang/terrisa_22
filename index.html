@@ -1,93 +1,211 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terrisa 宗楚宜 22歲生日快樂！🎉</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #4a4a4a;
-        }
-        .card-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 35px 25px;
-            max-width: 650px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .badge {
-            display: inline-block;
-            background: #ff7e5f;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        h1 { font-size: 2rem; color: #2c3e50; margin-bottom: 10px; line-height: 1.3; }
-        p.subtitle { font-size: 1rem; color: #7f8c8d; margin-bottom: 25px; }
-
-        /* 響應式影片容器：改用 aspect-ratio 並設定 min-height，
-           避免手機版容器過小導致 Google Drive 播放器的
-           timeline / pause 按鈕被壓縮到難以點擊 */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            min-height: 180px;
-            max-height: 45vh;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            background: #000;
-            margin: 0 auto 20px;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .footer-text { font-size: 0.95rem; color: #666; line-height: 1.6; }
-        .heart { color: #e74c3c; display: inline-block; }
-
-        /* 手機版：縮小卡片內距，讓影片實際寬度更大，
-           控制列(timeline/pause)才夠大可點擊 */
-        @media (max-width: 600px) {
-            body { padding: 8px; }
-            .card-container { padding: 16px 8px; border-radius: 16px; }
-            .video-wrapper { min-height: 200px; border-radius: 12px; }
-            h1 { font-size: 1.5rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrisa 宗楚宜 22歲生日快樂！🎉</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    color: #4a4a4a;
+}
+.floaters { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.floaters span {
+    position: absolute;
+    bottom: -60px;
+    font-size: 1.8rem;
+    animation: floatUp linear infinite;
+    opacity: 0.85;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(-110vh) translateX(20px) rotate(15deg); opacity: 0; }
+}
+.card-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 35px 25px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.badge {
+    display: inline-block;
+    background: #ff7e5f;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+h1 { font-size: 2rem; color: #2c3e50; margin-bottom: 10px; line-height: 1.3; }
+p.subtitle { font-size: 1rem; color: #7f8c8d; margin-bottom: 25px; }
+.video-link-card {
+    background: linear-gradient(135deg, #ffe0d0, #ffd1c1);
+    border-radius: 16px;
+    padding: 28px 20px;
+    margin-bottom: 25px;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5);
+}
+.video-link-card .icon { font-size: 2.8rem; margin-bottom: 8px; }
+.video-link-card p { font-size: 0.95rem; color: #7a5c50; margin-bottom: 16px; }
+.watch-btn {
+    display: inline-block;
+    background: #ff7e5f;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    box-shadow: 0 6px 14px rgba(255,126,95,0.4);
+    transition: transform 0.15s ease;
+}
+.watch-btn:active { transform: scale(0.96); }
+.game-section {
+    background: #fff7f0;
+    border-radius: 16px;
+    padding: 22px 16px;
+    margin-bottom: 22px;
+}
+.game-title { font-size: 1.1rem; font-weight: bold; color: #d35400; margin-bottom: 6px; }
+.game-hint { font-size: 0.85rem; color: #9a7c6c; margin-bottom: 16px; }
+.cake-row { font-size: 2.4rem; margin-bottom: 10px; }
+.candle {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.candle.blown { opacity: 0.3; transform: scale(0.8) rotate(-8deg); filter: grayscale(1); }
+.cake-base { font-size: 3rem; }
+#candleMsg { font-size: 0.95rem; color: #e67e22; font-weight: bold; min-height: 24px; margin-top: 8px; }
+.balloon-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.balloon {
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.balloon.popped { visibility: hidden; }
+.balloon:active { transform: scale(1.3); }
+#wishMsg {
+    font-size: 0.95rem;
+    color: #d35400;
+    font-weight: bold;
+    min-height: 24px;
+    margin-top: 4px;
+    background: #fff0e5;
+    border-radius: 10px;
+    padding: 8px;
+}
+.footer-text { font-size: 0.95rem; color: #666; line-height: 1.6; }
+.heart { color: #e74c3c; display: inline-block; }
+@media (max-width: 600px) {
+    body { padding: 8px; }
+    .card-container { padding: 16px 8px; border-radius: 16px; }
+    h1 { font-size: 1.5rem; }
+}
+</style>
 </head>
 <body>
-    <div class="card-container">
-        <div class="badge">HAPPY 22ND BIRTHDAY</div>
-        <h1>親愛的 Terrisa 宗楚宜<br>22歲生日快樂！🎂</h1>
-        <p class="subtitle">這是我特別為你準備的小驚喜，點開看看吧！✨</p>
+<div class="floaters" id="floaters"></div>
+<div class="card-container">
+    <div class="badge">HAPPY 22ND BIRTHDAY</div>
+    <h1>親愛的 Terrisa 宗楚宜<br>22歲生日快樂！🎂</h1>
+    <p class="subtitle">這是我特別為你準備的小驚喜，點開看看吧！✨</p>
 
-        <div class="video-wrapper">
-            <iframe src="https://drive.google.com/file/d/1d0EoVJsw6D2w7VlZfWToUyyfGMk_L8EO/preview" allow="autoplay"></iframe>
-        </div>
-
-        <p class="footer-text">
-            祝楚宜 22 歲生日快樂！願新的一歲充滿陽光、笑容與無限可能 <span class="heart">❤️</span>
-        </p>
+    <div class="video-link-card">
+        <div class="icon">🎬</div>
+        <p>點下方按鈕，前往觀看專屬生日影片</p>
+        <a class="watch-btn" href="https://drive.google.com/file/d/1d0EoVJsw6D2w7VlZfWToUyyfGMk_L8EO/view" target="_blank" rel="noopener">▶ 觀看生日影片</a>
     </div>
+
+    <div class="game-section">
+        <div class="game-title">🎂 吹蠟燭許願</div>
+        <div class="game-hint">點一下每根蠟燭把它吹熄，全部吹完會有驚喜！</div>
+        <div class="cake-row" id="cakeRow">
+            <span class="candle">🕯️</span><span class="candle">🕯️</span><span class="candle">🕯️</span><span class="candle">🕯️</span><span class="candle">🕯️</span>
+        </div>
+        <div class="cake-base">🎂</div>
+        <div id="candleMsg"></div>
+    </div>
+
+    <div class="game-section">
+        <div class="game-title">🎈 戳氣球抽祝福</div>
+        <div class="game-hint">戳一顆氣球，看看裡面藏著什麼祝福話</div>
+        <div class="balloon-row" id="balloonRow">
+            <span class="balloon">🎈</span><span class="balloon">🎈</span><span class="balloon">🎈</span><span class="balloon">🎈</span><span class="balloon">🎈</span>
+        </div>
+        <div id="wishMsg">戳一顆氣球試試看 👆</div>
+    </div>
+
+    <p class="footer-text">
+        祝楚宜 22 歲生日快樂！願新的一歲充滿陽光、笑容與無限帥哥 <span class="heart">❤️</span>
+    </p>
+</div>
+
+<script>
+const floaters = document.getElementById('floaters');
+const emojis = ['🎈','✨','🎉','💛','🧁','🎊'];
+for (let i = 0; i < 18; i++) {
+    const el = document.createElement('span');
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = (1.2 + Math.random() * 1.6) + 'rem';
+    const duration = 8 + Math.random() * 10;
+    el.style.animationDuration = duration + 's';
+    el.style.animationDelay = (Math.random() * duration) + 's';
+    floaters.appendChild(el);
+}
+
+const candles = document.querySelectorAll('.candle');
+const candleMsg = document.getElementById('candleMsg');
+let blownCount = 0;
+candles.forEach(c => {
+    c.addEventListener('click', () => {
+        if (c.classList.contains('blown')) return;
+        c.classList.add('blown');
+        blownCount++;
+        if (blownCount < candles.length) {
+            candleMsg.textContent = `已吹熄 ${blownCount}/${candles.length} 根蠟燭～`;
+        } else {
+            candleMsg.textContent = '🎉 生日願望成功送出！願望一定會實現的 ❤️';
+        }
+    });
+});
+
+const wishes = [
+    '願你 22 歲一切順順利利，考試、申請工作都輕鬆過關！',
+    '希望你天天開心，笑容比陽光還耀眼 ☀️',
+    '祝你新的一年身體健康，元氣滿滿，記得好好吃飯！',
+    '願你所有的努力都被溫柔以待，夢想一一實現。',
+    '希望今年的你，比去年更快樂、更自由自在～'
+];
+const balloons = document.querySelectorAll('.balloon');
+const wishMsg = document.getElementById('wishMsg');
+balloons.forEach((b, idx) => {
+    b.addEventListener('click', () => {
+        if (b.classList.contains('popped')) return;
+        b.classList.add('popped');
+        wishMsg.textContent = '🎁 ' + wishes[idx % wishes.length];
+    });
+});
+</script>
 </body>
 </html>
