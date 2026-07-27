@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=style=width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terrisa 宗楚宜 22歲生日快樂！🎉</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,16 +38,26 @@
         }
         h1 { font-size: 2rem; color: #2c3e50; margin-bottom: 10px; line-height: 1.3; }
         p.subtitle { font-size: 1rem; color: #7f8c8d; margin-bottom: 25px; }
+        
+        /* 響應式影片容器 */
         .video-wrapper {
             position: relative;
             width: 100%;
+            padding-top: 56.25%; /* 16:9 比例 */
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background: #000;
             margin-bottom: 20px;
         }
-        video { width: 100%; height: auto; display: block; }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
         .footer-text { font-size: 0.95rem; color: #666; line-height: 1.6; }
         .heart { color: #e74c3c; display: inline-block; }
     </style>
@@ -59,10 +69,8 @@
         <p class="subtitle">這是我特別為你準備的小驚喜，點開看看吧！✨</p>
 
         <div class="video-wrapper">
-            <video controls playsinline>
-                <source src="video.mp4" type="video/mp4">
-                你的瀏覽器不支援影片播放。
-            </video>
+            <!-- 👇 請把你在 Google Drive 複製的 <iframe>...</iframe> 整段貼在下面替換掉這行 -->
+            <iframe src="https://drive.google.com/file/d/YOUR_FILE_ID/preview" allow="autoplay"></iframe>
         </div>
 
         <p class="footer-text">
